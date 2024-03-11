@@ -46,6 +46,11 @@ spec:
                configMapKeyRef:
                  name: config-kub-values
                  key: POSTGRES_USER
+           - name: JWT_SECRET
+             valueFrom:
+                secretKeyRef:
+                  name: secret-kb-values
+                  key: JWT_SECRET
           ports:
           - containerPort: 8080
             hostPort: 0
