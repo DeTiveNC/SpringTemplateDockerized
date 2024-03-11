@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-kub-values
+data:
+  DATABASE_URL: "jdbc:postgresql://java-db:5432/demo"
+  PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+  POSTGRES_DB: "demo"
+  POSTGRES_USER: "postgres"
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-kb-values
+type: Opaque
+data:
+  POSTGRES_PASSWORD: cG9zdGdyZXM=
+  PGADMIN_DEFAULT_PASSWORD: YWRtaW4=
+  DATABASE_PASSWORD: cG9zdGdyZXM=

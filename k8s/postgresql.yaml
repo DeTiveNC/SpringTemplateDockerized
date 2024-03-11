@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-db
+  labels:
+    app: postgresql
+    service: java-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: java-db
+  template:
+    metadata:
+      labels:
+        app: java-db
+        service: java-db
+        network: "true"
+    spec:
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim
+      containers:
+      - name: postgres
+        image: postgres:15.6
+        env:
+          - name: POSTGRES_DB
+            valueFrom:
+              configMapKeyRef:
+                name: config-kub-values
+                key: POSTGRES_DB
+          - name: POSTGRES_USER
+            valueFrom:
+              configMapKeyRef:
+                name: config-kub-values
+                key: POSTGRES_USER
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: secret-kb-values
+                key: POSTGRES_PASSWORD
+        ports:
+        - containerPort: 5432
+          protocol: TCP
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: java-db
+  labels:
+    app: postgresql
+spec:
+  selector:
+    app: java-db
+  ports:
+  - port: 5432
+    targetPort: 5432
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pv-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
