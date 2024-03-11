@@ -4,6 +4,8 @@
   <img src="https://github.com/DeTiveNC/SpringTemplateDockerized/assets/116792124/7ed10241-b326-4a43-a3b9-fb4551cbed6c" alt="Logo" width="80" height="80">
   <img src="https://github.com/DeTiveNC/SpringTemplateDockerized/assets/116792124/d4f4c729-4758-444d-afea-f47fe2b81c93" alt="Logo" width="30" height="30">
   <img src="https://github.com/DeTiveNC/SpringTemplateDockerized/assets/116792124/f5f7d528-4845-40c2-a3e4-92d2a8821fe3" alt="Logo" width="80" height="80">
+  <img src="https://github.com/DeTiveNC/SpringTemplateDockerized/assets/116792124/d4f4c729-4758-444d-afea-f47fe2b81c93" alt="Logo" width="30" height="30">
+  <img src="https://github.com/DeTiveNC/SpringTemplateDockerized/assets/116792124/22a57232-f267-446d-b141-fe4e94af6445" alt="Logo" width="80" height="80">
 
   <h3 align="center">Template for Spring+Docker+Postgresql+K8S</h3>
 
@@ -29,6 +31,7 @@
 * [Usage](#usage)
 * [Deploy](#deploy)
 * [K8S](#k8s)
+* [v2](#v2)
 * [License](#license)
 * [Authors](#authors)
 
@@ -106,7 +109,13 @@ So for this part you can do it manually using the [Kubernetes guide](https://kub
 
 *NOTE* Because I run all locally I use [Minikube](https://minikube.sigs.k8s.io/docs/) that is the a greatest kubernetes cluster for running it locally and to explore kubernetes
 
+## V2
 
+<p align="center">
+  <img src="https://github.com/DeTiveNC/SpringTemplateDockerized/assets/116792124/22a57232-f267-446d-b141-fe4e94af6445" alt="JWT logo" width="80" height="80">
+</p>
+
+I added the functionality that normal people use for protection on a backend JWT. Not only I add it the part of JWT, right now Spring Security is on in his latest version as well as JWT.
 
 ## License
 
