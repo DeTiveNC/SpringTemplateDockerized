@@ -119,7 +119,7 @@ I added the functionality that normal people use for protection on a backend JWT
 
 ## License
 
-Distributed under the MIT License. See [LICENSE](https://github.com/DeTiveNC/SpringTemplateDockerized/blob/main/LICENSE.md) for more information.
+Distributed under the MIT License. See [LICENSE](https://github.com/DeTiveNC/SpringTemplateDockerized/blob/main/LICENSE) for more information.
 
 ## Authors
 
