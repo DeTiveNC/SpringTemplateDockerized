@@ -16,17 +16,36 @@ repositories {
 }
 
 dependencies {
-    api(libs.org.springframework.boot.spring.boot.starter.data.jpa)
-    api(libs.org.springframework.boot.spring.boot.starter.web)
-    api(libs.org.springdoc.springdoc.openapi.starter.webmvc.ui)
-    api(libs.org.springdoc.springdoc.openapi.starter.webmvc.api)
-    api(libs.io.jsonwebtoken.jjwt.api)
-    api(libs.org.projectlombok.lombok)
-    api(libs.org.springframework.boot.spring.boot.starter.security)
-    runtimeOnly(libs.org.postgresql.postgresql)
-    runtimeOnly(libs.io.jsonwebtoken.jjwt.jackson)
-    runtimeOnly(libs.io.jsonwebtoken.jjwt.impl)
-    testImplementation(libs.org.springframework.boot.spring.boot.starter.test)
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+    implementation("org.springframework.boot:spring-boot-starter-web:3.2.4")
+
+    // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
+
+    // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-api
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.5.0")
+
+
+    // JSON Web Token Support
+    api("io.jsonwebtoken:jjwt-api:0.12.5")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.2.4")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.5") // For JSON processing
+
+    // Lombok for simplifying getter, setter, etc.
+    api("org.projectlombok:lombok:1.18.32")
+    annotationProcessor("org.projectlombok:lombok:1.18.32")
+
+    // Spring Boot Starter Security
+    api("org.springframework.boot:spring-boot-starter-security:3.2.4")
+
+    // PostgreSQL JDBC Driver
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    runtimeOnly("org.postgresql:postgresql:42.7.3")
+
+
+    // Spring Boot Starter Test
+    testImplementation("org.springframework.boot:spring-boot-starter-test:3.2.4")
 }
 
 group = "com.pee"
