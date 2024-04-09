@@ -1,6 +1,7 @@
-# Dockerfile for building a custom application image
-# Version: 1.0
-FROM vegardit/graalvm-maven:latest-java21
-LABEL maintainer="Nicolas Cao nicolascao12@gmail.com"
-COPY target/*.jar app.jar
-CMD [ "java", "-jar", "app.jar" ]
+# DOCKERFILE FOR SPRING BOOT APPLICATION
+# This Dockerfile is used to build a Docker image for a Spring Boot application
+FROM eclipse-temurin:21-alpine
+EXPOSE 8080
+WORKDIR /app
+COPY /build/libs/*.jar app.jar
+ENTRYPOINT ["java","-jar","app.jar"]
