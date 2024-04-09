@@ -27,17 +27,17 @@ dependencies {
 
 
     // JSON Web Token Support
-    api("io.jsonwebtoken:jjwt-api:0.12.5")
+    implementation("io.jsonwebtoken:jjwt-api:0.12.5")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.2.4")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.5")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.5") // For JSON processing
 
     // Lombok for simplifying getter, setter, etc.
-    api("org.projectlombok:lombok:1.18.32")
+    implementation("org.projectlombok:lombok:1.18.32")
     annotationProcessor("org.projectlombok:lombok:1.18.32")
 
     // Spring Boot Starter Security
-    api("org.springframework.boot:spring-boot-starter-security:3.2.4")
+    implementation("org.springframework.boot:spring-boot-starter-security:3.2.4")
 
     // PostgreSQL JDBC Driver
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
