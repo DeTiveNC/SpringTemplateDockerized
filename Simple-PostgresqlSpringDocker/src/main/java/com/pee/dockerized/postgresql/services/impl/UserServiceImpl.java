@@ -30,13 +30,17 @@ public class UserServiceImpl implements UserService {
         return getUser.orElse(null);
     }
     @Override
-    public User saveUser(User user){
+    public User saveUser(User user) throws RuntimeException {
+        var userExists = userRepository.findByEmail(user.getEmail());
+        if (userExists.isPresent()){
+            throw new RuntimeException("User already exists");
+        }
         return userRepository.save(user);
     }
     @Override
-    public User findByEmail(String email){
+    public User findByEmail(String email) throws RuntimeException {
         Optional<User> getUser = userRepository.findByEmail(email);
-        return getUser.orElse(null);
+        return getUser.orElseThrow(() -> new RuntimeException("Email not found"));
     }
     @Override
     public User findByRole(Role role){
