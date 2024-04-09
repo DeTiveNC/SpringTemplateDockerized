@@ -6,7 +6,7 @@ plugins {
     `java-library`
     `maven-publish`
     id("io.freefair.lombok") version "8.6"
-    id("com.vanniktech.dependency.graph.generator") version "0.5.0"
+    id("com.vanniktech.dependency.graph.generator") version "0.8.0"
 }
 
 repositories {
