@@ -1,6 +1,6 @@
 plugins {
     java
-    id("org.springframework.boot") version "3.2.5"
+    id("org.springframework.boot") version "3.3.0"
     id("io.spring.dependency-management") version "1.1.4"
 }
 
@@ -28,8 +28,6 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-api
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.5.0")
-
-
 
     // Lombok for simplifying getter, setter, etc.
     implementation("org.projectlombok:lombok:1.18.32")

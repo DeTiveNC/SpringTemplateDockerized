@@ -6,7 +6,6 @@ import com.pee.dockerized.postgresql.entity.Role;
 import com.pee.dockerized.postgresql.services.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -31,7 +30,7 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public User saveUser(User user) throws RuntimeException {
-        var userExists = userRepository.findByEmail(user.getEmail());
+        Optional<User> userExists = userRepository.findByEmail(user.getEmail());
         if (userExists.isPresent()){
             throw new RuntimeException("User already exists");
         }
@@ -40,7 +39,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByEmail(String email) throws RuntimeException {
         Optional<User> getUser = userRepository.findByEmail(email);
-        return getUser.orElseThrow(() -> new RuntimeException("Email not found"));
+        return getUser.orElseThrow(() -> new RuntimeException("Not encounter"));
     }
     @Override
     public User findByRole(Role role){
@@ -49,12 +48,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetailsService userDetailsService() {
-        return new UserDetailsService() {
-            @Override
-            public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-                return userRepository.findByEmail(email)
-                        .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-            }
-        };
+        return email -> userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }

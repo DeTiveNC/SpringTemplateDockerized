@@ -3,5 +3,5 @@
 FROM eclipse-temurin:21-alpine
 EXPOSE 8080
 WORKDIR /app
-COPY /build/libs/*.jar app.jar
+COPY /build/libs/dockerized.postgresql-2.5.0.jar app.jar
 ENTRYPOINT ["java","-jar","app.jar"]

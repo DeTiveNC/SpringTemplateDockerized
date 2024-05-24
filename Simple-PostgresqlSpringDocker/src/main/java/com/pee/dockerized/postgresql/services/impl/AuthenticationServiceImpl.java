@@ -28,7 +28,7 @@ public class AuthenticationServiceImpl  implements AuthentificationService {
     public User signUp(SignUpRequest newUser) throws RuntimeException {
         try {
             User user = new User();
-            user.setUsername(newUser.username());
+            user.setUserIdent(newUser.username());
             user.setEmail(newUser.email());
             user.setPassword(passwordEncoder.encode(newUser.password()));
             user.setRole(Role.USER);
