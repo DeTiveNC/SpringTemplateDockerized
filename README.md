@@ -28,7 +28,7 @@
 * [Deploy](#deploy)
 * [K8S](#k8s)
 * [v2](#v2)
-* [v2.5](#v2.5)
+* [v2.5](#v25)
 * [License](#license)
 * [Authors](#authors)
 
