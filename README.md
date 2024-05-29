@@ -1,11 +1,7 @@
 <p align="center">
-  <img src="https://github.com/DeTiveNC/SpringTemplateDockerized/assets/116792124/a123ca6f-e2a6-4566-9611-d2c3d505da23" alt="Logo" width="80" height="80">
-  <img src="https://github.com/DeTiveNC/SpringTemplateDockerized/assets/116792124/d4f4c729-4758-444d-afea-f47fe2b81c93" alt="Logo" width="30" height="30">
-  <img src="https://github.com/DeTiveNC/SpringTemplateDockerized/assets/116792124/7ed10241-b326-4a43-a3b9-fb4551cbed6c" alt="Logo" width="80" height="80">
-  <img src="https://github.com/DeTiveNC/SpringTemplateDockerized/assets/116792124/d4f4c729-4758-444d-afea-f47fe2b81c93" alt="Logo" width="30" height="30">
-  <img src="https://github.com/DeTiveNC/SpringTemplateDockerized/assets/116792124/f5f7d528-4845-40c2-a3e4-92d2a8821fe3" alt="Logo" width="80" height="80">
-  <img src="https://github.com/DeTiveNC/SpringTemplateDockerized/assets/116792124/d4f4c729-4758-444d-afea-f47fe2b81c93" alt="Logo" width="30" height="30">
-  <img src="https://github.com/DeTiveNC/SpringTemplateDockerized/assets/116792124/22a57232-f267-446d-b141-fe4e94af6445" alt="Logo" width="80" height="80">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=kubernetes,docker,gradle,maven,postgres,spring" />
+  </a>
 
   <h3 align="center">Template for Spring+Docker+Postgresql+K8S</h3>
 
@@ -32,6 +28,7 @@
 * [Deploy](#deploy)
 * [K8S](#k8s)
 * [v2](#v2)
+* [v2.5](#v2.5)
 * [License](#license)
 * [Authors](#authors)
 
@@ -102,7 +99,9 @@ image: <your-username>/java-app:<tag-name>
 ## K8S
 
 <p align="center">
-  <img src="https://github.com/DeTiveNC/SpringTemplateDockerized/assets/116792124/7ed10241-b326-4a43-a3b9-fb4551cbed6c" alt="Logo" width="80" height="80">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=kubernetes" />
+  </a>
 </p>
 
 So for this part you can do it manually using the [Kubernetes guide](https://kubernetes.io/docs/tutorials/). In my repository i created it with [Kompose](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/). With Kompose is easier to create the files in seconds and deploying locally to try it out the environment. Using ``` kompose convert  ``` You can convert the files in what you need to use for deploy and service an kubernetes cluster.
@@ -116,6 +115,16 @@ So for this part you can do it manually using the [Kubernetes guide](https://kub
 </p>
 
 I added the functionality that normal people use for protection on a backend JWT. Not only I add it the part of JWT, right now Spring Security is on in his latest version as well as JWT.
+
+## V2.5
+
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=gradle" />
+  </a>
+</p>
+
+Change from Maven to Gradle with a new Implementation in security that is ***Automatic***
 
 ## License
 
