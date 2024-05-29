@@ -5,22 +5,28 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
+import java.security.SecureRandom;
+import java.util.Base64;
 import java.util.Date;
 import java.util.Map;
 import java.util.function.Function;
 
 @Service
 public class JwtServiceImpl implements JwtService {
-    /**
-     * You would want to store this in a more secure place, like a vault or environment variable
-     */
-    @Value("${JWT_SECRET}")
-    private String SECRET;
+
+    private final String SECRET;
+
+    private JwtServiceImpl(){
+        SecureRandom random = new SecureRandom();
+        byte[] key = new byte[32];
+        random.nextBytes(key);
+        this.SECRET = Base64.getEncoder().encodeToString(key);
+    }
+
     @Override
     public String generateToken(UserDetails userDetails) {
         return Jwts.builder().subject(userDetails.getUsername())

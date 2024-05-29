@@ -18,6 +18,8 @@ target/
 *.iws
 *.iml
 *.ipr
+/.gradle/
+/build/
 
 ### NetBeans ###
 /nbproject/private/
@@ -34,13 +36,14 @@ build/
 
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear
 *.zip
 *.tar.gz
 *.rar
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
 
 
 

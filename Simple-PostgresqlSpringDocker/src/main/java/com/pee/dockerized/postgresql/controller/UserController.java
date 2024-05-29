@@ -26,15 +26,15 @@ public class UserController {
     @ApiResponse(responseCode = "200", description = "List all users")
     public ResponseEntity<List<User>> getAllUsers(){
         List<User> list = userServiceImpl.getAllUsers();
-        return list != null ? new ResponseEntity<List<User>>(list, HttpStatus.OK)
-        : new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
+        return list != null ? new ResponseEntity<>(list, HttpStatus.OK)
+        : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     @Operation(method = "GET", summary = "Get endpoint for get an id users")
     @ApiResponse(responseCode = "200", description = "Get a user")
     @GetMapping(path = "/{id}")
     public ResponseEntity<User> getUserById(@PathVariable("id") Long id){
         User userRec = userServiceImpl.getUserById(id);
-        return userRec != null ? new ResponseEntity<User>(userRec, HttpStatus.OK)
+        return userRec != null ? new ResponseEntity<>(userRec, HttpStatus.OK)
         : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

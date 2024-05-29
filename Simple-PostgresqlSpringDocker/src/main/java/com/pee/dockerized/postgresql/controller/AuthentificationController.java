@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,19 +27,31 @@ public class AuthentificationController {
     @PostMapping("/signup")
     @Operation(method = "POST", summary = "Post endpoint for sign up a user")
     @ApiResponse(responseCode = "200", description = "Add a user and jwt token")
-    public ResponseEntity<User> signUp(@RequestBody SignUpRequest signUp){
-        return ResponseEntity.ok(authentificationService.signUp(signUp));
+    public ResponseEntity<?> signUp(@RequestBody SignUpRequest signUp){
+        try {
+            return ResponseEntity.ok(authentificationService.signUp(signUp));
+        } catch (Exception e){
+            return new ResponseEntity<>("Invalid email/password", HttpStatus.CONFLICT);
+        }
     }
     @PostMapping("/signin")
     @Operation(method = "POST", summary = "Post endpoint for sign in a user")
     @ApiResponse(responseCode = "201", description = "Add a user")
-    public ResponseEntity<JWTAuthResponse> signIn(@RequestBody SignInRequest signIn){
-        return ResponseEntity.ok(authentificationService.signIn(signIn));
+    public ResponseEntity<?> signIn(@RequestBody SignInRequest signIn){
+        try {
+            return ResponseEntity.ok(authentificationService.signIn(signIn));
+        } catch (Exception e){
+            return new ResponseEntity<>("Invalid email/password",HttpStatus.CONFLICT);
+        }
     }
     @PostMapping("/refresh")
     @Operation(method = "POST", summary = "Post endpoint for create a user")
     @ApiResponse(responseCode = "201", description = "Add a user")
-    public ResponseEntity<JWTAuthResponse> refreshToken(@RequestBody RefreshTokenRequest refreshToken){
-        return ResponseEntity.ok(authentificationService.refreshToken(refreshToken));
+    public ResponseEntity<?> refreshToken(@RequestBody RefreshTokenRequest refreshToken){
+        try {
+            return ResponseEntity.ok(authentificationService.refreshToken(refreshToken));
+        } catch (Exception e){
+            return new ResponseEntity<>("Not possible to create tokens",HttpStatus.CONFLICT);
+        }
     }
 }
