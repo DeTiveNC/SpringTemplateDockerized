@@ -3,6 +3,7 @@ package com.pee.dockerized.postgresql.services.impl;
 import java.util.List;
 
 import com.pee.dockerized.postgresql.entity.Role;
+import com.pee.dockerized.postgresql.errors.ErrorEncontrado;
 import com.pee.dockerized.postgresql.services.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,7 @@ public class UserServiceImpl implements UserService {
     public User saveUser(User user) throws RuntimeException {
         Optional<User> userExists = userRepository.findByEmail(user.getEmail());
         if (userExists.isPresent()){
-            throw new RuntimeException("User already exists");
+            throw new ErrorEncontrado("User already exists");
         }
         return userRepository.save(user);
     }

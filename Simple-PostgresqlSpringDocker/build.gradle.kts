@@ -1,7 +1,7 @@
 plugins {
     java
-    id("org.springframework.boot") version "3.3.0"
-    id("io.spring.dependency-management") version "1.1.4"
+    id("org.springframework.boot") version "3.4.0"
+    id("io.spring.dependency-management") version "1.1.6"
 }
 
 group = "com.pee"
@@ -18,24 +18,24 @@ repositories {
 
 dependencies {
     // JSON Web Token Support
-    implementation("io.jsonwebtoken:jjwt-api:0.12.5")
+    implementation("io.jsonwebtoken:jjwt-api:0.12.6")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.5")
-    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.5") // For JSON processing
-
     // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
 
     // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-api
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.5.0")
-
-    // Lombok for simplifying getter, setter, etc.
-    implementation("org.projectlombok:lombok:1.18.32")
-    annotationProcessor("org.projectlombok:lombok:1.18.32")
-
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.7.0")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
+
+    // Lombok for simplifying getter, setter, etc.
+    implementation("org.projectlombok:lombok:1.18.36")
+
+    annotationProcessor("org.projectlombok:lombok:1.18.36")
+
     runtimeOnly("org.postgresql:postgresql")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.6")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.6") // For JSON processing
 }
 
 tasks.withType<Test> {

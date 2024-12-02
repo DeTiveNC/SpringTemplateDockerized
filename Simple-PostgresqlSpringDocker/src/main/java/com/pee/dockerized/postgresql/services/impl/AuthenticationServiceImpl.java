@@ -6,6 +6,7 @@ import com.pee.dockerized.postgresql.dto.SignInRequest;
 import com.pee.dockerized.postgresql.dto.SignUpRequest;
 import com.pee.dockerized.postgresql.entity.Role;
 import com.pee.dockerized.postgresql.entity.User;
+import com.pee.dockerized.postgresql.errors.ErrorEncontrado;
 import com.pee.dockerized.postgresql.services.AuthentificationService;
 import com.pee.dockerized.postgresql.services.JwtService;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +35,7 @@ public class AuthenticationServiceImpl  implements AuthentificationService {
             user.setRole(Role.USER);
             return userService.saveUser(user);
         }  catch (Exception e){
-            throw new RuntimeException("Invalid email/password");
+            throw new ErrorEncontrado("Invalid email/password");
         }
     }
     @Override
@@ -46,7 +47,7 @@ public class AuthenticationServiceImpl  implements AuthentificationService {
             var refreshToken = jwtService.generateRefreshToken(new HashMap<>(), user);
             return new JWTAuthResponse(token, refreshToken);
         } catch (Exception e){
-            throw new RuntimeException("Invalid email/password");
+            throw new ErrorEncontrado("Invalid email/password");
         }
     }
     @Override
@@ -55,12 +56,12 @@ public class AuthenticationServiceImpl  implements AuthentificationService {
         try {
            User user = userService.findByEmail(userEmail);
             if (!jwtService.validateToken(refreshTokenRequest.token(), user)){
-                throw new RuntimeException("Invalid refresh token");
+                throw new ErrorEncontrado("Invalid refresh token");
             }
             var token = jwtService.generateToken(user);
             return new JWTAuthResponse(token, refreshTokenRequest.token());
         } catch (RuntimeException e){
-            throw new RuntimeException("User not found");
+            throw new ErrorEncontrado("User not found");
         }
     }
 }
