@@ -20,4 +20,6 @@ jobs:
       run: chmod +x ./Simple-PostgresqlSpringDocker/gradlew
 
     - name: Build with Gradle
-      run: ./Simple-PostgresqlSpringDocker/gradlew build --stacktrace --info
+      working-directory: ./Simple-PostgresqlSpringDocker
+      run: ./gradlew build --stacktrace --info
+
