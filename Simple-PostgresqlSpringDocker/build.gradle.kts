@@ -21,7 +21,7 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-api:0.12.6")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6")
 
     // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-api
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.7.0")
