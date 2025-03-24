@@ -1,29 +1,23 @@
 name: Java CI with Gradle
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: [push, pull_request]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
     - name: Set up JDK 21
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@v2
       with:
-        java-version: '21'
         distribution: 'temurin'
+        java-version: '21'
 
-    # Removed duplicated Setup Gradle step, as it's unnecessary to have it twice before each Gradle build command.
+    - name: Grant execute permission for gradlew
+      run: chmod +x ./gradlew
 
-    - name: Build with Gradle Wrapper
+    - name: Build with Gradle
       run: ./gradlew build
-      working-directory: ./Simple-PostgresqlSpringDocker
-      # Ensures the command runs in the correct project directory
