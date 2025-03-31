@@ -29,9 +29,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
 
     // Lombok for simplifying getter, setter, etc.
-    implementation("org.projectlombok:lombok:1.18.36")
+    implementation("org.projectlombok:lombok:1.18.38")
 
-    annotationProcessor("org.projectlombok:lombok:1.18.36")
+    annotationProcessor("org.projectlombok:lombok:1.18.38")
 
     runtimeOnly("org.postgresql:postgresql")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.6")
