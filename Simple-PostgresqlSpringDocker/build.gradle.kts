@@ -24,7 +24,7 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6")
 
     // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-api
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.8.6")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.8.8")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
 
