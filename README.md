@@ -100,7 +100,9 @@ image: <your-username>/java-app:<tag-name>
 ## K8S
 
 <p align="center">
-  <img src="https://github.com/DeTiveNC/SpringTemplateDockerized/assets/116792124/7ed10241-b326-4a43-a3b9-fb4551cbed6c" alt="Logo" width="80" height="80">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=kubernetes" />
+  </a>
 </p>
 
 So for this part you can do it manually using the [Kubernetes guide](https://kubernetes.io/docs/tutorials/). In my repository i created it with [Kompose](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/). With Kompose is easier to create the files in seconds and deploying locally to try it out the environment. Using ``` kompose convert  ``` You can convert the files in what you need to use for deploy and service an kubernetes cluster.
@@ -114,6 +116,10 @@ So for this part you can do it manually using the [Kubernetes guide](https://kub
 </p>
 
 I added the functionality that normal people use for protection on a backend JWT. Not only I add it the part of JWT, right now Spring Security is on in his latest version as well as JWT.
+
+## More info
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/DeTiveNC/SpringTemplateDockerized)
 
 ## License
 
