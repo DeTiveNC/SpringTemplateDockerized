@@ -1,13 +1,36 @@
 services:
+  java_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kotlin_app
+    environment:
+      SPRING_DATASOURCE_URL: <DATABASE_URL>
+      SPRING_DATASOURCE_USERNAME: <DATABASE_USERNAME>
+      SPRING_DATASOURCE_PASSWORD: <DATABASE_PASSWORD>
+      SPRING_JPA_HIBERNATE_DDL-AUTO: update
+      JWT_SECRET: ${JWT_SECRET:-changeThisToStrongSecret}
+      JWT_EXPIRATION: 86400000 # 24 horas
+    ports:
+      - "8080:8080"
+    depends_on:
+      java_db:
+        condition: service_healthy
+    networks:
+      - kotlin-network
   java_db:
-    container_name: java_db
-    image: postgres:latest
+    container_name: kotlin_db
+    image: postgres:17-alpine
     ports:
       - "5432:5432"
     environment:
       POSTGRES_USER: <DATABASE_USERNAME>
       POSTGRES_PASSWORD: <DATABASE_PASSWORD>
       POSTGRES_DB: <DATABASE_DB>
+    volumes:
+      - data:/var/lib/postgresql/data
+    networks:
+      - kotlin-network
   pgadmin_db:
     image: dpage/pgadmin4:latest
     container_name: pgadmin4_container
@@ -17,4 +40,14 @@ services:
         PGADMIN_DEFAULT_EMAIL: <PGADMIN_DEFAULT_EMAIL>
         PGADMIN_DEFAULT_PASSWORD: <PGADMIN_PASSWORD>
     depends_on:
-      - java_db
+      java_db:
+        condition: service_healthy
+    networks:
+      - kotlin-network
+
+volumes:
+  data:
+
+networks:
+  kotlin-network:
+    driver: bridge

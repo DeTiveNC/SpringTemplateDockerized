@@ -17,9 +17,8 @@ jobs:
         java-version: '21'
 
     - name: Grant execute permission for gradlew
-      run: chmod +x ./Simple-PostgresqlSpringDocker/gradlew
+      run: chmod +x ./gradlew
 
     - name: Build with Gradle
-      working-directory: ./Simple-PostgresqlSpringDocker
       run: ./gradlew build --stacktrace --info
 
