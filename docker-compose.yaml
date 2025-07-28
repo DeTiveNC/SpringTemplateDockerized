@@ -1,46 +1,67 @@
 services:
-  java_app:
+  kotlin_app:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: kotlin_app
     environment:
       SPRING_DATASOURCE_URL: <DATABASE_URL>
-      SPRING_DATASOURCE_USERNAME: <DATABASE_USERNAME>
-      SPRING_DATASOURCE_PASSWORD: <DATABASE_PASSWORD>
-      SPRING_JPA_HIBERNATE_DDL-AUTO: update
-      JWT_SECRET: ${JWT_SECRET:-changeThisToStrongSecret}
-      JWT_EXPIRATION: 86400000 # 24 horas
+      SPRING_DATASOURCE_USERNAME: <DATABASE_URL>
+      SPRING_DATASOURCE_PASSWORD: <DATABASE_URL>
+      ISSUER_URL: <DATABASE_URL>
     ports:
       - "8080:8080"
     depends_on:
-      java_db:
+      kotlin_db:
         condition: service_healthy
     networks:
       - kotlin-network
-  java_db:
+
+  kotlin_db:
     container_name: kotlin_db
     image: postgres:17-alpine
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: <DATABASE_USERNAME>
-      POSTGRES_PASSWORD: <DATABASE_PASSWORD>
-      POSTGRES_DB: <DATABASE_DB>
+      POSTGRES_USER: <DATABASE_URL>
+      POSTGRES_PASSWORD: <DATABASE_URL>
+      POSTGRES_DB: <DATABASE_URL>
     volumes:
       - data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
     networks:
       - kotlin-network
+
   pgadmin_db:
     image: dpage/pgadmin4:latest
     container_name: pgadmin4_container
     ports:
-        - "8888:80"
+      - "8888:80"
     environment:
-        PGADMIN_DEFAULT_EMAIL: <PGADMIN_DEFAULT_EMAIL>
-        PGADMIN_DEFAULT_PASSWORD: <PGADMIN_PASSWORD>
+      PGADMIN_DEFAULT_EMAIL: <DATABASE_URL>
+      PGADMIN_DEFAULT_PASSWORD: <DATABASE_URL>
     depends_on:
-      java_db:
+      kotlin_db:
+        condition: service_healthy
+    networks:
+      - kotlin-network
+
+  kc-oauth2.0:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: keycloak-admin
+    ports:
+      - "8181:8080"
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: <DATABASE_URL>
+      KC_BOOTSTRAP_ADMIN_PASSWORD: <DATABASE_URL>
+    command: start-dev
+    depends_on:
+      kotlin_db:
         condition: service_healthy
     networks:
       - kotlin-network

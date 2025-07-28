@@ -1,40 +1,48 @@
 # Build stage
-FROM ghcr.io/graalvm/graalvm-community:21 AS build
+FROM gradle:8.14.1-jdk-21-and-24-graal AS build
 WORKDIR /workspace/app
 
 # Copy build files
 COPY build.gradle.kts settings.gradle.kts gradlew ./
 COPY gradle gradle
 
-# Download dependencies (separate cache layer for optimization)
+# Download dependencies
 RUN gradle dependencies --no-daemon
 
 # Copy source code
 COPY src src
 
 # Build the application
-RUN gradle build --no-daemon -x test
+RUN gradle clean nativeCompile --no-daemon
 
 # Production stage
 FROM alpine:latest
 WORKDIR /app
 
-# Instalar dependencias mínimas para el ejecutable nativo
-RUN apk add --no-cache libstdc++
+# Install necessary runtime dependencies for native Spring Boot apps
+RUN apk add --no-cache \
+    libstdc++ \
+    gcompat \
+    libc6-compat \
+    libgcc
 
-# Environment variables for configuration
-ENV JWT_SECRET=defaultSecretChangeMeInProduction
-ENV JWT_EXPIRATION=86400000
-
-# Create non-root user for better security
+# Create non-root user
 RUN addgroup -S spring && adduser -S spring -G spring
+
+# Copy native application and dependencies
+COPY --from=build /workspace/app/build/native/nativeCompile/spring-app /app/spring-app
+
+# Make executable
+RUN chmod +x /app/spring-app
+
 USER spring:spring
 
-# Copiar el ejecutable nativo
-COPY --from=builder /workspace/app/build/native/nativeCompile/app /app/spring-app
-
-# Expose application port
+# Expose port
 EXPOSE 8080
 
-# Comando de arranque
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
+    CMD wget --no-verbose --tries=1 --spider http://localhost:8080/actuator/health || exit 1
+
+# Entrypoint
 ENTRYPOINT ["/app/spring-app"]

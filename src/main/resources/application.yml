@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: KSpringDocker
+  graphql:
+    graphiql:
+          enabled: true
+          path: /graphiql
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${ISSUER_URL:http://keycloak-admin:8181/realms/spring-template}
+  datasource:
+    url: ${DB_URL}
+    password: ${DB_PASSWORD}
+    username: ${DB_USERNAME}
+
+server:
+  port: 8080
