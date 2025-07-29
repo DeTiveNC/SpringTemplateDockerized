@@ -1,6 +1,5 @@
-package com.nuketown.KSpringDoker
+package com.nuketown.kSpringDoker
 
-import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest

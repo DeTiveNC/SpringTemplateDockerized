@@ -22,18 +22,22 @@ repositories {
 }
 
 dependencies {
+	// Starters
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+
+	// Dev tools & Kotlin
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 
-	// OAuth2 - comentado temporalmente
-	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
-
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
+	// Postgres & IA agents
 	runtimeOnly("org.postgresql:postgresql")
+	implementation("ai.koog:koog-spring-boot-starter:0.3.0")
 
+	// Test platforms
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testImplementation("org.springframework.security:spring-security-test")

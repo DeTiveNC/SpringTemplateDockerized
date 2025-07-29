@@ -5,10 +5,11 @@ services:
       dockerfile: Dockerfile
     container_name: kotlin_app
     environment:
-      SPRING_DATASOURCE_URL: <DATABASE_URL>
-      SPRING_DATASOURCE_USERNAME: <DATABASE_URL>
-      SPRING_DATASOURCE_PASSWORD: <DATABASE_URL>
-      ISSUER_URL: <DATABASE_URL>
+      DB_URL: <DB_URL>
+      DB_USERNAME: <DB_URL>
+      DB_PASSWORD: <DB_URL>
+      ISSUER_URL: <DB_URL>
+      OLLAMA_URL: <DB_URL>
     ports:
       - "8080:8080"
     depends_on:
@@ -23,9 +24,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: <DATABASE_URL>
-      POSTGRES_PASSWORD: <DATABASE_URL>
-      POSTGRES_DB: <DATABASE_URL>
+      POSTGRES_USER: <DB_URL>
+      POSTGRES_PASSWORD: <DB_URL>
+      POSTGRES_DB: <DB_URL>
     volumes:
       - data:/var/lib/postgresql/data
     healthcheck:
@@ -43,8 +44,8 @@ services:
     ports:
       - "8888:80"
     environment:
-      PGADMIN_DEFAULT_EMAIL: <DATABASE_URL>
-      PGADMIN_DEFAULT_PASSWORD: <DATABASE_URL>
+      PGADMIN_DEFAULT_EMAIL: <DB_URL>
+      PGADMIN_DEFAULT_PASSWORD: <DB_URL>
     depends_on:
       kotlin_db:
         condition: service_healthy
@@ -57,8 +58,8 @@ services:
     ports:
       - "8181:8080"
     environment:
-      KC_BOOTSTRAP_ADMIN_USERNAME: <DATABASE_URL>
-      KC_BOOTSTRAP_ADMIN_PASSWORD: <DATABASE_URL>
+      KC_BOOTSTRAP_ADMIN_USERNAME: <DB_URL>
+      KC_BOOTSTRAP_ADMIN_PASSWORD: <DB_URL>
     command: start-dev
     depends_on:
       kotlin_db:

@@ -199,3 +199,6 @@ README.html
 *.iml
 .idea
 .exercism
+
+## Docker compose test fast
+docker-compose-test.yaml
