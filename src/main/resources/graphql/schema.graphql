@@ -1,3 +1,15 @@
+scalar Date
+
+type Notes {
+    email: String
+    description: String
+    createdAt: Date
+}
+
+type AIAnswer {
+    text: String
+}
+
 type Query {
   hello: String!
   me: String
@@ -5,4 +17,8 @@ type Query {
 
 type Mutation {
   echo(message: String!): String!
+  findNotesByEmail(email: String): [Notes]
+  findNotesCreatedAtAfter(date: Date): [Notes]
+  askChatGPT(prompt: String!): AIAnswer!
 }
+

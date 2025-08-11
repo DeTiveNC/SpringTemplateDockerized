@@ -12,7 +12,7 @@ RUN gradle dependencies --no-daemon
 # Copy source code
 COPY src src
 
-# Build the application
+# Build the application with reduced memory usage
 RUN gradle clean nativeCompile --no-daemon
 
 # Production stage
