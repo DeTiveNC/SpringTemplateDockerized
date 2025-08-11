@@ -1,130 +1,138 @@
 <p align="center">
-
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=git,githubactions,kubernetes,docker,gradle,postgres,spring&perline=7" />
+    <img src="https://skillicons.dev/icons?i=git,githubactions,kubernetes,docker,gradle,postgres,spring,kotlin&perline=8" />
   </a>
 </p>
 
-  <h3 align="center">Template for Spring+Docker+Postgresql+K8S</h3>
+<h1 align="center">Spring Boot, Docker, and Kubernetes Template</h1>
 
-  <p align="center">
-    Easy-To-Use dockerized SpringBootApp
-    <br/>
-    <br/>
-    <a href="https://github.com/DeTiveNC/SpringTemplateDockerized/issues">Report Bug</a>
-    .
-    <a href="https://github.com/DeTiveNC/SpringTemplateDockerized/issues">Request Feature</a>
-  </p>
+<p align="center">
+  A ready-to-use, containerized Spring Boot application template for rapid development and deployment.
+  <br/>
+  <br/>
+  <a href="https://github.com/DeTiveNC/SpringTemplateDockerized/issues">Report Bug</a>
+  ·
+  <a href="https://github.com/DeTiveNC/SpringTemplateDockerized/issues">Request Feature</a>
 </p>
 
-![Contributors](https://img.shields.io/github/contributors/DeTiveNC/SpringTemplateDockerized?color=dark-green) ![Forks](https://img.shields.io/github/forks/DeTiveNC/SpringTemplateDockerized?style=social) ![Stargazers](https://img.shields.io/github/stars/DeTiveNC/SpringTemplateDockerized?style=social) ![Issues](https://img.shields.io/github/issues/DeTiveNC/SpringTemplateDockerized) ![License](https://img.shields.io/github/license/DeTiveNC/SpringTemplateDockerized) 
 
-## Table Of Contents
-
-* [About the Project](#about-the-project)
-* [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-* [Usage](#usage)
-* [Deploy](#deploy)
-* [K8S](#k8s)
-* [v2](#v2)
-* [License](#license)
-* [Authors](#authors)
-
+  ![Contributors](https://img.shields.io/github/contributors/DeTiveNC/SpringTemplateDockerized?color=dark-green)
+  ![Forks](https://img.shields.io/github/forks/DeTiveNC/SpringTemplateDockerized?style=social)
+  ![Stargazers](https://img.shields.io/github/stars/DeTiveNC/SpringTemplateDockerized?style=social)
+  ![Issues](https://img.shields.io/github/issues/DeTiveNC/SpringTemplateDockerized)
+  ![License](https://img.shields.io/github/license/DeTiveNC/SpringTemplateDockerized)
 
 ## About The Project
 
-For people that always have problems building correctly a Docker for Spring Boot Application, I have your solution.
+This project provides a solid foundation for building and deploying Spring Boot applications. It comes pre-configured with Docker for containerization, PostgreSQL as the database, and Kubernetes for orchestration. It's designed to help you get your web service up and running quickly, with a focus on modern development practices.
 
-This project is an easy-to-use spring boot app for test or start a web service from scratch for the last version of spring boot.
+### Features
 
-## Built With
+*   **Spring Boot:** The latest version for building robust Java and Kotlin applications.
+*   **Docker:** Containerize your application for consistent environments and easy scaling.
+*   **PostgreSQL:** A powerful, open-source object-relational database system.
+*   **Kubernetes:** Pre-configured for deploying your application to a K8s cluster.
+*   **JWT Authentication:** Secure your endpoints with JSON Web Tokens.
+*   **Gradle:** A powerful build automation tool.
 
-Start of the project is with the help of spring initializers peaking dependecies for Postgres+Web+JPA
+### Built With
 
-* [Spring Initializer](https://start.spring.io/)
+*   [Spring Boot](https://spring.io/projects/spring-boot)
+*   [Kotlin](https://kotlinlang.org/)
+*   [Gradle](https://gradle.org/)
+*   [Docker](https://www.docker.com/)
+*   [PostgreSQL](https://www.postgresql.org/)
+*   [Kubernetes](https://kubernetes.io/)
 
 ## Getting Started
 
-Steps to configure and run the project locally
+Follow these steps to get a local copy of the project up and running.
 
 ### Prerequisites
 
-You need to have: 
-- Docker
+*   Docker
+*   JDK 17 or later
 
 ### Installation
 
-1. Clone the repo
-```
-    git clone https://github.com/detivenc/SpringTemplateDockerized.git
-```
-2. Build the project
-    - SPRING:
-       - On terminal at the project folder
- ```./mvnw clean package -DskipTests```
-3. Run the script of docker-compose
-            ```docker-compose up```
-4. PgAdmin
-When you run it access with the creadentials:
-- admin@admin.com (you can change it)
-- admin (you can change it)
-When you need to add the server is:
-- General: 
-  - Name: whatever
-- Connection:
-  - Host: java_db
-  - Username: postgres or change it
-  - Password: postgres or change it
+1.  **Clone the repo**
+    ```sh
+    git clone https://github.com/DeTiveNC/SpringTemplateDockerized.git
+    ```
+2.  **Build the project**
+    Use the Gradle wrapper to build the project and create the JAR file.
+    ```sh
+    ./gradlew build
+    ```
+3.  **Run with Docker Compose**
+    This will start the application and the PostgreSQL database.
+    ```sh
+    docker-compose up
+    ```
 
 ## Usage
 
-Use this project to have a fast creation of spring project, test it and deploy it.
-For testing, you can use Swagger and see the changes of the database with PgAdmin
+The application exposes the following API endpoints:
 
-## Deploy
+*   **Register a new user:**
+    `POST /api/auth/register`
+    <br>
+    Request body:
+    ```json
+    {
+      "email": "user@example.com",
+      "password": "password"
+    }
+    ```
+*   **Login:**
+    `POST /api/auth/login`
+    <br>
+    Request body:
+    ```json
+    {
+      "email": "user@example.com",
+      "password": "password"
+    }
+    ```
+*   **Health Check:**
+    `GET /health`
 
-For deploying the docker compose you only need to do 
-```
-docker compose build
-docker compose push
-```
+You can use a tool like `curl` or Postman to interact with the API.
 
-*NOTE* Remember that you need to have the jar file compiled on the spring boot project and on the docker-compose.yml need to be attachend this: 
-```
-image: <your-username>/java-app:<tag-name>
-```
+## Deployment
 
-## K8S
+To deploy the application, you can build and push the Docker image to a container registry.
 
-<p align="center">
-  <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=kubernetes" />
-  </a>
-</p>
+1.  **Build the Docker image**
+    ```sh
+    docker compose build
+    ```
+2.  **Push the Docker image**
+    Make sure to tag the image with your registry's username and a tag.
+    ```sh
+    docker push <your-username>/java-app:<tag-name>
+    ```
 
-So for this part you can do it manually using the [Kubernetes guide](https://kubernetes.io/docs/tutorials/). In my repository i created it with [Kompose](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/). With Kompose is easier to create the files in seconds and deploying locally to try it out the environment. Using ``` kompose convert  ``` You can convert the files in what you need to use for deploy and service an kubernetes cluster.
+## Kubernetes
 
-*NOTE* Because I run all locally I use [Minikube](https://minikube.sigs.k8s.io/docs/) that is the a greatest kubernetes cluster for running it locally and to explore kubernetes
+This project includes a `k8s` directory with Kubernetes manifests to deploy the application. You can use a tool like [Minikube](https://minikube.sigs.k8s.io/docs/) to run a local Kubernetes cluster.
 
-## V2
+The manifests were generated using [Kompose](https://kompose.io/), which translates Docker Compose files into Kubernetes resources.
 
-<p align="center">
-  <img src="https://github.com/DeTiveNC/SpringTemplateDockerized/assets/116792124/22a57232-f267-446d-b141-fe4e94af6445" alt="JWT logo" width="80" height="80">
-</p>
+## Contributing
 
-I added the functionality that normal people use for protection on a backend JWT. Not only I add it the part of JWT, right now Spring Security is on in his latest version as well as JWT.
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-## More info
-
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/DeTiveNC/SpringTemplateDockerized)
+1.  Fork the Project
+2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the Branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
 
 ## License
 
-Distributed under the MIT License. See [LICENSE](https://github.com/DeTiveNC/SpringTemplateDockerized/blob/main/LICENSE) for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Authors
 
-* **Nicolas Cao** - *Comp Eng Student* - [Nicolas Cao](https://github.com/detivenc) - *Built SpringProject*
+*   **Nicolas Cao** - *Comp Eng Student* - [Nicolas Cao](https://github.com/detivenc) - *Built SpringProject*
