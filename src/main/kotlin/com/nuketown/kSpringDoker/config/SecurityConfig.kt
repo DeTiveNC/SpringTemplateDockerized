@@ -26,7 +26,7 @@ class SecurityConfig(
         return http
             .authorizeHttpRequests { it
                 .requestMatchers("/graphql").authenticated()
-                .requestMatchers("/graphiql", "/health", "/register", "/login/**", "/VAADIN/**", "/frontend/**", "/webjars/**", "/favicon.ico",).permitAll()
+                .requestMatchers("/graphiql", "/health", "/register", "/login/**", "/VAADIN/**", "/frontend/**", "/webjars/**", "/favicon.ico").permitAll()
             }
             .csrf { it.disable() }
             .cors { it.disable() }

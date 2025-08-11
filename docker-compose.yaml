@@ -5,11 +5,11 @@ services:
       dockerfile: Dockerfile
     container_name: kotlin_app
     environment:
-      DB_URL: a
-      DB_USERNAME: a
-      DB_PASSWORD: a
-      ISSUER_URL: a
-      CHATGPT-KEY: arkanoid-chatgpt-key
+      DB_URL: <KEY>
+      DB_USERNAME: <KEY>
+      DB_PASSWORD: <KEY>
+      ISSUER_URL: <KEY>
+      CHATGPT-KEY: <KEY>
     ports:
       - "8080:8080"
     depends_on:
@@ -24,9 +24,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_USER: <KEY>
+      POSTGRES_PASSWORD: <KEY>
+      POSTGRES_DB: <KEY>
     volumes:
       - data:/var/lib/postgresql/data
     healthcheck:
@@ -44,8 +44,8 @@ services:
     ports:
       - "8888:80"
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.org
-      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_DEFAULT_EMAIL: <KEY>
+      PGADMIN_DEFAULT_PASSWORD: <KEY>
     depends_on:
       kotlin_db:
         condition: service_healthy
@@ -58,8 +58,8 @@ services:
     ports:
       - "8181:8080"
     environment:
-      KC_BOOTSTRAP_ADMIN_USERNAME: admin
-      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_BOOTSTRAP_ADMIN_USERNAME: <KEY>
+      KC_BOOTSTRAP_ADMIN_PASSWORD: <KEY>
     command: start-dev
     depends_on:
       kotlin_db:
