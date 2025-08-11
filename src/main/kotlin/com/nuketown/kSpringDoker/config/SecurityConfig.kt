@@ -1,11 +1,21 @@
 package com.nuketown.kSpringDoker.config
 
+import com.nimbusds.jose.jwk.JWKSet
+import com.nimbusds.jose.jwk.OctetSequenceKey
+import com.nimbusds.jose.jwk.source.ImmutableJWKSet
+import com.nimbusds.jose.proc.SecurityContext
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.Customizer
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.oauth2.jwt.JwtDecoder
+import org.springframework.security.oauth2.jwt.JwtEncoder
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder
+import org.springframework.security.oauth2.jwt.NimbusJwtEncoder
 import org.springframework.security.web.SecurityFilterChain
 import javax.crypto.spec.SecretKeySpec
 
@@ -13,23 +23,23 @@ import javax.crypto.spec.SecretKeySpec
 @EnableWebSecurity
 class SecurityConfig {
     @Bean
-    fun passwordEncoder(): org.springframework.security.crypto.password.PasswordEncoder =
-        org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder()
+    fun passwordEncoder(): PasswordEncoder =
+        BCryptPasswordEncoder()
 
     @Bean
-    fun jwtEncoder(secret: String): org.springframework.security.oauth2.jwt.JwtEncoder {
+    fun jwtEncoder(secret: String): JwtEncoder {
         val secretKey = SecretKeySpec(secret.toByteArray(), "HmacSHA256")
-        val jwk = com.nimbusds.jose.jwk.OctetSequenceKey.Builder(secretKey).build()
-        val jwkSource = com.nimbusds.jose.jwk.source.ImmutableJWKSet<com.nimbusds.jose.proc.SecurityContext>(
-            com.nimbusds.jose.jwk.JWKSet(jwk)
+        val jwk = OctetSequenceKey.Builder(secretKey).build()
+        val jwkSource = ImmutableJWKSet<SecurityContext>(
+            JWKSet(jwk)
         )
-        return org.springframework.security.oauth2.jwt.NimbusJwtEncoder(jwkSource)
+        return NimbusJwtEncoder(jwkSource)
     }
 
     @Bean
-    fun jwtDecoder(secret: String): org.springframework.security.oauth2.jwt.JwtDecoder {
+    fun jwtDecoder(secret: String): JwtDecoder {
         val secretKey = SecretKeySpec(secret.toByteArray(), "HmacSHA256")
-        return org.springframework.security.oauth2.jwt.NimbusJwtDecoder.withSecretKey(secretKey).build()
+        return NimbusJwtDecoder.withSecretKey(secretKey).build()
     }
 
     @Bean
