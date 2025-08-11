@@ -30,7 +30,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-graphql")
 
 	// Vaadin (basic UI)
-	implementation("com.vaadin:vaadin-spring-boot-starter:24.4.14")
+	implementation("com.vaadin:vaadin-spring-boot-starter:24.8.6")
 
 	// Dev tools & Kotlin
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
