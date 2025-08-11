@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=git,githubactions,kubernetes,docker,gradle,postgres,spring&perline=7" />
+    <img src="https://skillicons.dev/icons?i=git,githubactions,kubernetes,docker,gradle,postgres,spring,kotlin&perline=8" />
   </a>
 </p>
 
@@ -15,13 +15,12 @@
   <a href="https://github.com/DeTiveNC/SpringTemplateDockerized/issues">Request Feature</a>
 </p>
 
-<p align="center">
+
   ![Contributors](https://img.shields.io/github/contributors/DeTiveNC/SpringTemplateDockerized?color=dark-green)
   ![Forks](https://img.shields.io/github/forks/DeTiveNC/SpringTemplateDockerized?style=social)
   ![Stargazers](https://img.shields.io/github/stars/DeTiveNC/SpringTemplateDockerized?style=social)
   ![Issues](https://img.shields.io/github/issues/DeTiveNC/SpringTemplateDockerized)
   ![License](https://img.shields.io/github/license/DeTiveNC/SpringTemplateDockerized)
-</p>
 
 ## About The Project
 
