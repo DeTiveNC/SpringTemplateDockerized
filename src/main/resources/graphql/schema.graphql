@@ -1,0 +1,8 @@
+type Query {
+  hello: String!
+  me: String
+}
+
+type Mutation {
+  echo(message: String!): String!
+}

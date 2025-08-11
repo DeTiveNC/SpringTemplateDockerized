@@ -8,11 +8,10 @@ import jakarta.persistence.Table
 
 @Entity
 @Table(name = "users")
-data class User (
+open class User(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private val id: Long,
-    private val username: String,
-    private val email: String,
-
+    var id: java.util.UUID? = null,
+    var email: String = "",
+    var passwordHash: String = ""
 )

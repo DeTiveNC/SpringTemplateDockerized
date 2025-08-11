@@ -27,13 +27,17 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+	implementation("org.springframework.boot:spring-boot-starter-graphql")
+
+	// Vaadin (basic UI)
+	implementation("com.vaadin:vaadin-spring-boot-starter:24.4.14")
 
 	// Dev tools & Kotlin
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 
-	// Postgres & IA agents
+	// Databases & IA agents
 	runtimeOnly("org.postgresql:postgresql")
 	implementation("ai.koog:koog-spring-boot-starter:0.3.0")
 
