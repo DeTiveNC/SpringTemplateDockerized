@@ -72,7 +72,26 @@ Follow these steps to get a local copy of the project up and running.
 
 ## Usage
 
-The application exposes the following API endpoints:
+This application provides both a web interface using Vaadin and REST API endpoints for authentication and user management.
+
+### Web Interface (Vaadin)
+
+Once the application is running, you can access the Vaadin web interface:
+
+1. **Login Page**: Navigate to `http://localhost:8080/login`
+   - Enter your email address and password
+   - Click **"Login"** to authenticate with existing credentials
+   - Click **"Register"** to create a new user account
+   - Upon successful authentication, a JWT token will be displayed in a notification
+
+The web interface provides a user-friendly way to:
+- Register new user accounts
+- Login with existing credentials
+- View JWT tokens for API access
+
+### REST API Endpoints
+
+The application also exposes the following API endpoints for programmatic access:
 
 *   **Register a new user:**
     `POST /api/auth/register`
@@ -84,6 +103,13 @@ The application exposes the following API endpoints:
       "password": "password"
     }
     ```
+    Response:
+    ```json
+    {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    }
+    ```
+
 *   **Login:**
     `POST /api/auth/login`
     <br>
@@ -94,10 +120,32 @@ The application exposes the following API endpoints:
       "password": "password"
     }
     ```
+    Response:
+    ```json
+    {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    }
+    ```
+
 *   **Health Check:**
     `GET /health`
 
-You can use a tool like `curl` or Postman to interact with the API.
+### Getting Started with Authentication
+
+1. **Start the application** using Docker Compose:
+   ```sh
+   docker-compose up
+   ```
+
+2. **Access the web interface** at `http://localhost:8080/login`
+
+3. **Register a new user** by entering an email and password, then clicking "Register"
+
+4. **Login** with your credentials to receive a JWT token
+
+5. **Use the JWT token** in the `Authorization: Bearer <token>` header for protected API endpoints
+
+You can use the web interface for easy interaction, or use tools like `curl` or Postman to interact directly with the REST API.
 
 ## Deployment
 
