@@ -1,11 +1,13 @@
 plugins {
 	kotlin("jvm") version "2.2.0"
 	kotlin("plugin.spring") version "2.2.0"
+    kotlin("plugin.jpa") version "2.2.0"
+
 	id("org.springframework.boot") version "3.5.4"
 	id("io.spring.dependency-management") version "1.1.7"
-	kotlin("plugin.jpa") version "2.2.0"
 	id("org.hibernate.orm") version "7.0.9.Final"
 	id("org.graalvm.buildtools.native") version "0.11.0"
+    id("com.vaadin") version "24.8.6"
 }
 
 group = "com.nuketown"
@@ -21,16 +23,20 @@ repositories {
 	mavenCentral()
 }
 
+extra["springAiVersion"] = "1.0.1"
+extra["vaadinVersion"] = "24.8.6"
+
 dependencies {
 	// Starters
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
 	implementation("org.springframework.boot:spring-boot-starter-graphql")
 
 	// Vaadin (basic UI)
-	implementation("com.vaadin:vaadin-spring-boot-starter:24.8.6")
+	implementation("com.vaadin:vaadin-spring-boot-starter")
+
 
 	// Dev tools & Kotlin
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -39,13 +45,21 @@ dependencies {
 
 	// Databases & IA agents
 	runtimeOnly("org.postgresql:postgresql")
-	implementation("ai.koog:koog-spring-boot-starter:0.3.0")
+    implementation("org.springframework.ai:spring-ai-starter-model-openai")
 
 	// Test platforms
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testImplementation("org.springframework.security:spring-security-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation("org.springframework.graphql:spring-graphql-test")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.ai:spring-ai-bom:${property("springAiVersion")}")
+        mavenBom("com.vaadin:vaadin-bom:${property("vaadinVersion")}")
+    }
 }
 
 kotlin {
