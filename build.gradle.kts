@@ -37,6 +37,7 @@ dependencies {
 	// Vaadin (basic UI)
 	implementation("com.vaadin:vaadin-spring-boot-starter")
 
+
 	// Dev tools & Kotlin
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
