@@ -12,8 +12,8 @@ spring:
           # Using custom JWT encoder/decoder beans; issuer-uri can be provided to use external provider instead
           issuer-uri: ${ISSUER_URL:http://keycloak-admin:8181/realms/spring-template}
   datasource:
-    url: ${DB_URL
-    password: ${DB_PASSWORD:}
+    url: ${DB_URL}
+    password: ${DB_PASSWORD}
     username: ${DB_USERNAME}
   jpa:
     hibernate:
@@ -21,9 +21,13 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-
-jwt:
-  secret: ${JWT_SECRET:dev-secret-change}
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-4o-nano
+          temperature: 0.7
 
 server:
   port: 8080
