@@ -183,4 +183,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Authors
 
-*   **Nicolas Cao** - *Comp Eng Student* - [Nicolas Cao](https://github.com/detivenc) - *Built SpringProject*
+*   **Nicolas Cao** - *Comp Eng Student* - [Nicolas Cao](https://github.com/detivenc) 
