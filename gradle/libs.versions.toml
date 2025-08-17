@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.2.0"
+kotlin = "2.2.10"
 springBoot = "3.5.4"
 dependencyManagement = "1.1.7"
 hibernate = "7.1.0.Final"
