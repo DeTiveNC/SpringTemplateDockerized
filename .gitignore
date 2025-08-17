@@ -205,3 +205,6 @@ docker-compose-test.yaml
 
 ## FrontEnd vaadim
 frontend/
+
+# Gradle build cache
+build-cache/
