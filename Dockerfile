@@ -1,5 +1,5 @@
 # Build stage
-FROM gradle:8.14.1-jdk-21-and-24-graal AS build
+FROM gradle:8.14.3-jdk-21-and-24-graal AS build
 WORKDIR /workspace/app
 
 # Copy build files
