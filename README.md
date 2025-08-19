@@ -21,6 +21,7 @@
   ![Stargazers](https://img.shields.io/github/stars/DeTiveNC/SpringTemplateDockerized?style=social)
   ![Issues](https://img.shields.io/github/issues/DeTiveNC/SpringTemplateDockerized)
   ![License](https://img.shields.io/github/license/DeTiveNC/SpringTemplateDockerized)
+  [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/DeTiveNC/SpringTemplateDockerized)
 
 ## About The Project
 
